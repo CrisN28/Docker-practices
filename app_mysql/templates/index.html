@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuarios</title>
+</head>
+<body>
+    <h1>Agregar Usuario</h1>
+    <form method="POST">
+        Nombre: <input type="text" name="nombre" required>
+        Edad: <input type="number" name="edad" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Lista de Usuarios</h2>
+    <ul>
+        {% for usuario in usuarios %}
+            <li>
+                {{ usuario['nombre'] }} - {{ usuario['edad'] }} años
+                <form method="POST" action="{{ url_for('eliminar', usuario_id=usuario['id']) }}" style="display:inline;">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
