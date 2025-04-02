@@ -1,0 +1,17 @@
+version: v2.29.2-desktop.2
+services:
+  miappweb1:
+    build: .
+    ports:
+      - "5000:5000"
+    links: 
+      - mysql-db
+  mysql-db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=prueba
+    volumes:
+      - "C:/Path/Path/Documents/init.sql:/docker-entrypoint-initdb.d/init.sql"
